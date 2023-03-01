@@ -18,20 +18,46 @@ public class DecoratorTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		// black = new BlackCoffee();
-		black = new BlackTea();
+		black = new BlackCoffee();
+		blackT = new BlackTea();
 		wMilk = new AddMilk(black);
 		wSugar = new AddSugar(black);
+		wMilkAndSugar = new AddMilk(wSugar);
+		wMilk = new AddMilk(blackT);
+		wSugar = new AddSugar(blackT);
 		wMilkAndSugar = new AddMilk(wSugar);
 	}
 
 	@Test
 	public void test() {
 		// Check costs
+		assertEquals(black.getCost(), 2.0, 0.001);
+		assertEquals(wMilk.getCost(), 2.5, 0.001);
+		assertEquals(wSugar.getCost(), 2.25, 0.001);
+		assertEquals(wMilkAndSugar.getCost(), 2.75, 0.001);
+		
+		// Check ingredients
+		List<String> blackIngredients = new ArrayList<String>();
+		blackIngredients.add("Coffee");
+		checkIngredientsMatch(blackIngredients, black.getIngredients());
+		
+		List<String> wMilkIngredients = new ArrayList<String>(blackIngredients);
+		wMilkIngredients.add("Milk");
+		checkIngredientsMatch(wMilkIngredients, wMilk.getIngredients());
+		
+		List<String> wSugarIngredients = new ArrayList<String>(blackIngredients);
+		wSugarIngredients.add("Sugar");
+		checkIngredientsMatch(wSugarIngredients, wSugar.getIngredients());
+		
+		List<String> wMilkAndSugarIngredients = new ArrayList<String>(wSugarIngredients);
+		wMilkAndSugarIngredients.add("Milk");
+		checkIngredientsMatch(wMilkAndSugarIngredients, wMilkAndSugar.getIngredients());
+
+		// Check costs
 		assertEquals(black.getCost(), 1.5, 0.001);
 		assertEquals(wMilk.getCost(), 2.0, 0.001);
 		assertEquals(wSugar.getCost(), 1.75, 0.001);
-		assertEquals(wMilkAndSugar.getCost(), 2.25, 0.001);
+		assertEquals(wMilkAndSugar.getCost(), 2.50, 0.001);
 		
 		// Check ingredients
 		List<String> blackIngredients = new ArrayList<String>();
