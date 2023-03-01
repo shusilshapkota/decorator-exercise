@@ -14,7 +14,7 @@ public class DecoratorTest {
 	private HotBeverage wMilk;
 	private HotBeverage wSugar;
 	private HotBeverage wMilkAndSugar;
-	// private HotBeverage blackTl
+	private HotBeverage blackT;
 	
 	@Before
 	public void setUp() throws Exception {
