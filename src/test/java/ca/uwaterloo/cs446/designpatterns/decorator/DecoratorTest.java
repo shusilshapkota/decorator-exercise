@@ -14,10 +14,12 @@ public class DecoratorTest {
 	private HotBeverage wMilk;
 	private HotBeverage wSugar;
 	private HotBeverage wMilkAndSugar;
+	// private HotBeverage blackTl
 	
 	@Before
 	public void setUp() throws Exception {
-		black = new BlackCoffee();
+		// black = new BlackCoffee();
+		black = new BlackTea();
 		wMilk = new AddMilk(black);
 		wSugar = new AddSugar(black);
 		wMilkAndSugar = new AddMilk(wSugar);
@@ -26,14 +28,14 @@ public class DecoratorTest {
 	@Test
 	public void test() {
 		// Check costs
-		assertEquals(black.getCost(), 2.0, 0.001);
+		assertEquals(black.getCost(), 1.5, 0.001);
 		assertEquals(wMilk.getCost(), 2.5, 0.001);
 		assertEquals(wSugar.getCost(), 2.25, 0.001);
 		assertEquals(wMilkAndSugar.getCost(), 2.75, 0.001);
 		
 		// Check ingredients
 		List<String> blackIngredients = new ArrayList<String>();
-		blackIngredients.add("Coffee");
+		blackIngredients.add("Tea");
 		checkIngredientsMatch(blackIngredients, black.getIngredients());
 		
 		List<String> wMilkIngredients = new ArrayList<String>(blackIngredients);
