@@ -15,6 +15,9 @@ public class DecoratorTest {
 	private HotBeverage wSugar;
 	private HotBeverage wMilkAndSugar;
 	private HotBeverage blackT;
+	private HotBeverage wMilkT;
+	private HotBeverage wSugarT;
+	private HotBeverage wMilkAndSugarT;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -23,9 +26,9 @@ public class DecoratorTest {
 		wMilk = new AddMilk(black);
 		wSugar = new AddSugar(black);
 		wMilkAndSugar = new AddMilk(wSugar);
-		wMilk = new AddMilk(blackT);
-		wSugar = new AddSugar(blackT);
-		wMilkAndSugar = new AddMilk(wSugar);
+		wMilkT = new AddMilk(blackT);
+		wSugarT = new AddSugar(blackT);
+		wMilkAndSugarT = new AddMilk(wSugarT);
 	}
 
 	@Test
@@ -54,27 +57,27 @@ public class DecoratorTest {
 		checkIngredientsMatch(wMilkAndSugarIngredients, wMilkAndSugar.getIngredients());
 
 		// Check costs
-		assertEquals(black.getCost(), 1.5, 0.001);
-		assertEquals(wMilk.getCost(), 2.0, 0.001);
-		assertEquals(wSugar.getCost(), 1.75, 0.001);
-		assertEquals(wMilkAndSugar.getCost(), 2.25, 0.001);
+		assertEquals(blackT.getCost(), 1.5, 0.001);
+		assertEquals(wMilkT.getCost(), 2.0, 0.001);
+		assertEquals(wSugarT.getCost(), 1.75, 0.001);
+		assertEquals(wMilkAndSugarT.getCost(), 2.25, 0.001);
 		
 		// Check ingredients
 		List<String> blackTIngredients = new ArrayList<String>();
 		blackIngredients.add("Tea");
-		checkIngredientsMatch(blackIngredients, black.getIngredients());
+		checkIngredientsMatch(blackIngredients, blackT.getIngredients());
 		
 		List<String> wMilkTIngredients = new ArrayList<String>(blackIngredients);
 		wMilkIngredients.add("Milk");
-		checkIngredientsMatch(wMilkIngredients, wMilk.getIngredients());
+		checkIngredientsMatch(wMilkIngredients, wMilkT.getIngredients());
 		
 		List<String> wSugarTIngredients = new ArrayList<String>(blackIngredients);
 		wSugarIngredients.add("Sugar");
-		checkIngredientsMatch(wSugarIngredients, wSugar.getIngredients());
+		checkIngredientsMatch(wSugarIngredients, wSugarT.getIngredients());
 		
 		List<String> wMilkAndSugarTIngredients = new ArrayList<String>(wSugarIngredients);
 		wMilkAndSugarIngredients.add("Milk");
-		checkIngredientsMatch(wMilkAndSugarIngredients, wMilkAndSugar.getIngredients());
+		checkIngredientsMatch(wMilkAndSugarIngredients, wMilkAndSugarT.getIngredients());
 	}
 	
 	private void checkIngredientsMatch(List<String> ing1, List<String> ing2) {
