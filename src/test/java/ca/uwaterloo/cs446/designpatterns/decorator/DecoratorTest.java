@@ -29,9 +29,9 @@ public class DecoratorTest {
 	public void test() {
 		// Check costs
 		assertEquals(black.getCost(), 1.5, 0.001);
-		assertEquals(wMilk.getCost(), 2.5, 0.001);
-		assertEquals(wSugar.getCost(), 2.25, 0.001);
-		assertEquals(wMilkAndSugar.getCost(), 2.75, 0.001);
+		assertEquals(wMilk.getCost(), 2.0, 0.001);
+		assertEquals(wSugar.getCost(), 1.75, 0.001);
+		assertEquals(wMilkAndSugar.getCost(), 2.25, 0.001);
 		
 		// Check ingredients
 		List<String> blackIngredients = new ArrayList<String>();
