@@ -57,22 +57,22 @@ public class DecoratorTest {
 		assertEquals(black.getCost(), 1.5, 0.001);
 		assertEquals(wMilk.getCost(), 2.0, 0.001);
 		assertEquals(wSugar.getCost(), 1.75, 0.001);
-		assertEquals(wMilkAndSugar.getCost(), 2.50, 0.001);
+		assertEquals(wMilkAndSugar.getCost(), 2.25, 0.001);
 		
 		// Check ingredients
-		List<String> blackIngredients = new ArrayList<String>();
+		List<String> blackTIngredients = new ArrayList<String>();
 		blackIngredients.add("Tea");
 		checkIngredientsMatch(blackIngredients, black.getIngredients());
 		
-		List<String> wMilkIngredients = new ArrayList<String>(blackIngredients);
+		List<String> wMilkTIngredients = new ArrayList<String>(blackIngredients);
 		wMilkIngredients.add("Milk");
 		checkIngredientsMatch(wMilkIngredients, wMilk.getIngredients());
 		
-		List<String> wSugarIngredients = new ArrayList<String>(blackIngredients);
+		List<String> wSugarTIngredients = new ArrayList<String>(blackIngredients);
 		wSugarIngredients.add("Sugar");
 		checkIngredientsMatch(wSugarIngredients, wSugar.getIngredients());
 		
-		List<String> wMilkAndSugarIngredients = new ArrayList<String>(wSugarIngredients);
+		List<String> wMilkAndSugarTIngredients = new ArrayList<String>(wSugarIngredients);
 		wMilkAndSugarIngredients.add("Milk");
 		checkIngredientsMatch(wMilkAndSugarIngredients, wMilkAndSugar.getIngredients());
 	}
